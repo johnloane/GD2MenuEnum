@@ -11,7 +11,7 @@ public class App
     private static Scanner keyboard = new Scanner(System.in);
     public static void main( String[] args )
     {
-        System.out.println( "Weclome to our Banking application" );
+        System.out.println( "Welcome to our Banking application" );
 
         MenuOptions selectedOption = MenuOptions.CONTINUE;
 
@@ -24,9 +24,39 @@ public class App
                 //act on that selection
                 //exit the loop on quit
                 menu();
+                selectedOption = MenuOptions.values()[Integer.parseInt(keyboard.nextLine().trim())];
 
+                switch(selectedOption)
+                {
+                    case CREATE_BANK:
+                        createBank();
+                        break;
+                    case ADD_BRANCH:
+                        //addBranch();
+                        break;
+                    case ADD_CUSTOMER:
+                        //addCustomer();
+                        break;
+                    case QUIT:
+                        break;
+                    default:
+                        System.out.println("Selection out of range. Please try again");
+                }
+            }
+            catch(IllegalArgumentException e)
+            {
+                System.out.println("Selection out of range. Try again: ");
+            }
+            catch(ArrayIndexOutOfBoundsException e)
+            {
+                System.out.println("Selection out of range. Try again: ");
             }
         }
+    }
+
+    private static void createBank()
+    {
+        System.out.println("Creating a bank");
     }
 
     private static void menu()
@@ -38,6 +68,6 @@ public class App
         System.out.println("\t 4. Customer transaction");
         System.out.println("\t 5. Display banks, branches, customers, transactions");
         System.out.println("\t 6. Quit");
-        System.out.println("\n Selection -> ");
+        System.out.print("\n Selection -> ");
     }
 }
